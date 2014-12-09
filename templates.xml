@@ -1,0 +1,124 @@
+<openerp>
+    <data>
+        <template id='index'>
+            <t t-call='website.layout'>
+                <div class='oe_structure'/>
+                <div class='oe_structure'>
+                    <div class='container'>
+                        <div class='row'>
+                            <h3>悠艇假期</h3>
+                        </div>
+                        <div class="carousel slide mb0 container" id="myCarousel0" style="height: 472px; overflow: hidden;">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-slide-to="0" data-target="#myCarousel0"/>
+                                <li data-slide-to="1" data-target="#myCarousel0"/>
+                                <li data-slide-to="2" data-target="#myCarousel0"/>
+                                <li data-slide-to="3" data-target="#myCarousel0"/>
+                                <li data-slide-to="4" data-target="#myCarousel0"/>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item text_only oe_img_bg active" style="background-image: url(http://localhost:8069/website/image/ir.attachment/58_4a18d66/datas);">
+                                    <div class="container">
+                                        <div class="content">
+                                            <div class="row">
+                                                <blockquote class="mt48 mb0 col-md-6 col-md-offset-1">
+                                                    <p>Write a quote here from one of your customers. Quotes are a great way to build confidence in your products or services.</p>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item text_only oe_img_bg" style="background-image: url(http://localhost:8069/website/image/ir.attachment/59_ce14d40/datas);">
+                                    <div class="container">
+                                        <div class="content">
+                                            <div class="row">
+                                                <blockquote class="mt48 mb16 col-md-4 col-md-offset-4">
+                                                    <p>Write a quote here from one of your customers. Quotes are a great way to build confidence in your products or services.</p>
+                                                    <small>Author of this quote</small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item text_only oe_img_bg" style="background-image: url(http://localhost:8069/website/image/ir.attachment/60_3776dd6/datas);">
+                                    <div class="container">
+                                        <div class="content">
+                                            <div class="row">
+                                                <blockquote class="mt48 mb16 col-md-4 col-md-offset-4">
+                                                    <p>Write a quote here from one of your customers. Quotes are a great way to build confidence in your products or services.</p>
+                                                    <small>Author of this quote</small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item text_only oe_img_bg" style="background-image: url(http://localhost:8069/website/image/ir.attachment/61_8482928/datas);">
+                                    <div class="container">
+                                        <div class="content">
+                                            <div class="row">
+                                                <blockquote class="mt48 mb16 col-md-4 col-md-offset-4">
+                                                    <p>Write a quote here from one of your customers. Quotes are a great way to build confidence in your products or services.</p>
+                                                    <small>Author of this quote</small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item text_only oe_img_bg" style="background-image: url(http://localhost:8069/website/image/ir.attachment/62_da40972/datas);">
+                                    <div class="container">
+                                        <div class="content">
+                                            <div class="row">
+                                                <blockquote class="mt48 mb16 col-md-4 col-md-offset-4">
+                                                    <p>Write a quote here from one of your customers. Quotes are a great way to build confidence in your products or services.</p>
+                                                    <small>Author of this quote</small>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-control left" data-slide="prev" data-target="#myCarousel0" href="#myCarousel0" style="width: 10%;left: 14px;margin-right: 0px;right: auto;">
+                                <i class="fa fa-chevron-left" style=""/>
+                            </div>
+                            <div class="carousel-control right" data-slide="next" data-target="#myCarousel0" href="#myCarousel0" style="width: 10%;right:14px;">
+                                <i class="fa fa-chevron-right" style=""/>
+                            </div>
+                        </div>
+                        
+                        <section>
+                            <t t-foreach='eleaves' t-as='pitem'>
+                            <div class='row'>
+                                <div class='col-md-12'>
+                                    <a t-attf-href='/package/{{ slug(pitem) }}'>
+                                        <t t-esc='pitem.name'/>
+                                    </a>
+                                </div>
+                            </div>
+                        </t>
+                        </section>
+                    </div>
+                </div>
+                <div class='oe_structure'/>
+            </t>
+        </template>
+        <template id='packageitem'>
+            <t t-call='website.layout'>
+                <title>
+                    <t t-esc='item.name'/>
+                </title>
+                <div class='oe_structure'/>
+                <div class='oe_structure'>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='col-md-9'>
+                                <h3 t-field='item.name'/>
+                                <div t-field='item.content'/>
+                            </div>
+                            <div class='col-md-3'></div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,92 @@
+<openerp>
+	<data>
+		<record id='yachtrip_package_form' model='ir.ui.view'>
+			<field name='name'>Package Form</field>
+			<field name='model'>yachtrip.package</field>
+			<field name='arch' type='xml'>
+				<form version='7.0'>
+					<sheet>
+					    <div class='oe_right oe_button_box' name='buttons'>
+                            <button name='attachment_tree_view' type='object' string='Images'/>
+                        </div>
+						<group>
+							<field name='name'/>
+							<field name='price'/>
+							<field name='excepts'/>
+							<field name='content'/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id='yachtrip_package_tree' model='ir.ui.view'>
+		    <field name='name'>Package tree</field>
+			<field name='model'>yachtrip.package</field>
+			<field name='arch' type='xml'>
+				<tree string='Packages'>
+					<field name='name'/>
+					<field name='price'/>
+					<field name='excepts'/>
+				</tree>
+			</field>
+		</record>
+
+		<!--
+		<record id='academy_courses_search' model='ir.ui.view'>
+			<field name='name'>Academy courses:search</field>
+			<field name='model'>academy.courses</field>
+			<field name='arch' type='xml'>
+				<search>
+					<field name='name'/>
+					<field name='teacher_id'/>
+				</search>
+			</field>
+		</record>
+
+		<record id='academy_courses_list' model='ir.ui.view'>
+			<field name='name'>Academy courses:list</field>
+			<field name='model'>academy.courses</field>
+			<field name='arch' type='xml'>
+				<tree string='Courses'>
+					<field name='name'/>
+					<field name='teacher_id'/>
+				</tree>
+			</field>
+		</record>
+
+		<record id='academy_courses_form' model='ir.ui.view'>
+			<field name='name'>Academy courses :form</field>
+			<field name='model'>academy.courses</field>
+			<field name='arch' type='xml'>
+				<form>
+					<sheet>
+						<label for='name'/>
+						<field name='name'/>
+						<label for='teacher_id'/>
+						<field name='teacher_id'/>
+					</sheet>
+					<div class='oe_chatter'>
+						<field name='message_follower_ids' widget='mail_followers'/>
+						<field name='message_ids' widget='mail_thread'/>
+					</div>
+				</form>
+			</field>
+		</record>
+		<record id='action_academy_courses' model='ir.actions.act_window'>
+			<field name='name'>Academy courses</field>
+			<field name='res_model'>academy.courses</field>
+		</record>
+		<menuitem id='menu_academy_content_courses' parent='menu_academy_content' action='action_academy_courses'/>
+		-->
+		<record id='action_yachtrip_package_action' model='ir.actions.act_window'>
+			<field name='name'>Yachtrip packages</field>
+			<field name='res_model'>yachtrip.package</field>
+		</record>
+
+		<menuitem sequence='0' id='menu_yachtrip_root' name='Yachtrip'/>
+		<menuitem id='menu_yachtrip_root_left' name='Yachtrip' parent='menu_yachtrip_root'/>
+		<menuitem id='menu_yachtrip_left_package' name='Package' parent='menu_yachtrip_root_left' action='action_yachtrip_package_action' />
+		
+	</data>
+</openerp>
