@@ -12,6 +12,7 @@
 						<group>
 							<field name='name'/>
 							<field name='price'/>
+							<field name='special_benefit'/>
 							<field name='excepts'/>
 							<field name='content'/>
 						</group>
@@ -29,6 +30,60 @@
 					<field name='price'/>
 					<field name='excepts'/>
 				</tree>
+			</field>
+		</record>
+
+		<record id='yachtrip_yatrip_list' model='ir.ui.view'>
+			<field name='name'>yachtrip.yatrip.form</field>
+			<field name='model'>yachtrip.yatrip</field>
+			<field name='arch' type='xml'>
+				<tree string='Yatrips'>
+					<field name='name'/>
+					<field name='country'/>
+					<field name='province'/>
+					<field name='price'/>
+					<field name='currency'/>
+				</tree>
+			</field>
+		</record>
+
+		<record id='yachtrip_yatrip_form' model='ir.ui.view'>
+			<field name='name'>Yatrip</field>
+			<field name='model'>yachtrip.yatrip</field>
+			<field name='arch' type='xml'>
+				<form>
+					<sheet>
+					    <div class='oe_right oe_button_box' name='buttons'>
+                            <button name='attachment_tree_view' type='object' string='Images'/>
+                        </div>
+						<group col='4'>
+							<field name='name' colspan='4'/>
+							<field name='country'/>
+							<field name='province'/>
+							<field name='price'/>
+							<field name='currency'/>
+							<field name='yatriptype'/>
+							<field name='guests'/>
+							<field name='length'/>
+							<field name='builder'/>
+							<field name='broker'/>
+							<field name='max_speed'/>
+							<field name='cruise_speed'/>
+							<field name='last_refitted'/>
+						</group>
+						<group col='4'>
+							<field name='images' nolabel='1'>
+								<tree string='Images'>
+									<field name='name'/>
+									<field name='description'/>
+								</tree>
+							</field>
+						</group>
+						<group col='4'>
+							<field name='description' colspan='4'/>
+						</group>
+					</sheet>
+				</form>
 			</field>
 		</record>
 
@@ -84,9 +139,15 @@
 			<field name='res_model'>yachtrip.package</field>
 		</record>
 
+		<record id='action_yachtrip_yatrip_action' model='ir.actions.act_window'>
+			<field name='name'>Yatrips</field>
+			<field name='res_model'>yachtrip.yatrip</field>
+		</record>
+
 		<menuitem sequence='0' id='menu_yachtrip_root' name='Yachtrip'/>
 		<menuitem id='menu_yachtrip_root_left' name='Yachtrip' parent='menu_yachtrip_root'/>
 		<menuitem id='menu_yachtrip_left_package' name='Package' parent='menu_yachtrip_root_left' action='action_yachtrip_package_action' />
+		<menuitem id='menu_yachtrip_left_yatrip' name='Yatrips' parent='menu_yachtrip_root_left' action='action_yachtrip_yatrip_action' />
 		
 	</data>
 </openerp>

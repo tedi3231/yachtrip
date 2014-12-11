@@ -101,6 +101,7 @@
                 <div class='oe_structure'/>
             </t>
         </template>
+
         <template id='packageitem'>
             <t t-call='website.layout'>
                 <title>
