@@ -64,18 +64,25 @@ class package(models.Model):
     excepts= fields.Char(size=1000,required=True)
     content = fields.Html()
     special_benefit = fields.Boolean()
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)
     add_date = fields.Datetime()
+    days = fields.One2many('yachtrip.package.days','package')
+    images = fields.One2many('ir.attachment',compute='_get_images')
 
-    #images = fields.Many2one('ir.attachment',domain="[('res_model','=','yachtrip.package')]")
+    def _get_images(self):
+        for rec in self:
+            attachments = self.env['ir.attachment'].search([('res_model','=','yachtrip.package'),('res_id','=',rec.id)])
+            self.images = attachments
+
     
     def attachment_tree_view(self, cr, uid, ids, context):
         domain = [
              '&', ('res_model', '=', 'yachtrip.package'), ('res_id', 'in', ids),
         ]
+        print 'domain is %s' % domain
         res_id = ids and ids[0] or False
         return {
-            'name': _('Documents'),
+            'name': _('Images'),
             'domain': domain,
             'res_model': 'ir.attachment',
             'type': 'ir.actions.act_window',
@@ -88,10 +95,18 @@ class package(models.Model):
     
 class pagekcage_days(models.Model):
     _name = 'yachtrip.package.days'
+    package = fields.Many2one('yachtrip.package')
     name = fields.Char(size=500)
     content = fields.Html()
     #images = fields.Many2one('ir.attachment',domain="[('res_model','=','yachtrip.package.days')]")
+    images = fields.One2many('ir.attachment',compute='_get_images')
     
+    def _get_images(self):
+        print 'days _get_images called'
+        for rec in self:
+            attachments = self.env['ir.attachment'].search([('res_model','=','yachtrip.package.days'),('res_id','=',rec.id)])
+            self.images = attachments
+
     def attachment_tree_view(self, cr, uid, ids, context):
         domain = [
              '&', ('res_model', '=', 'yachtrip.package.days'), ('res_id', 'in', ids),

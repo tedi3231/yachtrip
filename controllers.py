@@ -5,8 +5,9 @@ class Yachtrip(http.Controller):
     @http.route('/package',auth='public',website=True)
     def index(self):
         Packages = http.request.env['yachtrip.package']
+        #print 'packages is %s' % Packages.search([])
         return http.request.render('yachtrip.index',{
-            'eleaves':Packages.search([]),
+            'packages':Packages.search([]),
         })
 
     @http.route('/package/<model("yachtrip.package"):item>/',auth='public',website=True)
