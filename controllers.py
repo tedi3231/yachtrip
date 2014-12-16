@@ -12,8 +12,15 @@ class Yachtrip(http.Controller):
 
     @http.route('/package/<model("yachtrip.package"):item>/',auth='public',website=True)
     def package(self,item):
+        print 'package item is %s'%item
         return http.request.render('yachtrip.packageitem',{
             'item':item,
+        })
+
+    @http.route('/package/day/<model("yachtrip.package.days"):day>/',auth='public',website=True)
+    def day(self,day):
+        return http.request.render('yachtrip.dayitem',{
+            'day':day
         })
 
     """

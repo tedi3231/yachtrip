@@ -97,10 +97,12 @@ class pagekcage_days(models.Model):
     _name = 'yachtrip.package.days'
     package = fields.Many2one('yachtrip.package')
     name = fields.Char(size=500)
+    excepts= fields.Char(size=1000,required=True)
     content = fields.Html()
     #images = fields.Many2one('ir.attachment',domain="[('res_model','=','yachtrip.package.days')]")
     images = fields.One2many('ir.attachment',compute='_get_images')
-    
+    attractions = fields.Many2many('yachtrip.package.days.attractions','day_id','attractions_id','days_attractions_rel')
+
     def _get_images(self):
         print 'days _get_images called'
         for rec in self:
@@ -123,4 +125,35 @@ class pagekcage_days(models.Model):
             'limit': 80,
             'context': "{'default_res_model': '%s','default_res_id': %d}" % (self._name, res_id)
         }
-        
+
+class package_days_attractions(models.Model):
+    _name = 'yachtrip.package.days.attractions'
+
+    country = fields.Many2one("res.country",required=True)
+    province = fields.Many2one("res.country.state",domain="[('country_id','=',country)]")
+    name = fields.Char(size=1000,required=True)
+    excepts= fields.Char(size=1000,required=True)
+    images = fields.One2many('ir.attachment',compute='_get_images')
+    
+    def _get_images(self):
+        print 'days _get_images called'
+        for rec in self:
+            attachments = self.env['ir.attachment'].search([('res_model','=','yachtrip.package.days.attractions'),('res_id','=',rec.id)])
+            self.images = attachments
+
+class package_destination(models.Model):
+    _name = 'yachtrip.destination'
+    
+    name = fields.Char(size=1000,required=True)
+    country = fields.Many2one("res.country",required=True)
+    province = fields.Many2one("res.country.state",domain="[('country_id','=',country)]")
+    excepts = fields.Text(required=True)
+    content = fields.Html()
+    attractions = fields.Many2many('yachtrip.package.days.attractions','day_id','attractions_id','days_attractions_rel')
+    images = fields.One2many('ir.attachment',compute='_get_images')
+    
+    def _get_images(self):
+        print 'days _get_images called'
+        for rec in self:
+            attachments = self.env['ir.attachment'].search([('res_model','=','yachtrip.destination'),('res_id','=',rec.id)])
+            self.images = attachments

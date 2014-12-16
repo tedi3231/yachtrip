@@ -117,25 +117,14 @@
                                 <h3 t-field='item.name'/>
                                 <div t-field='item.content'/>
                                 <t t-foreach='item.images' t-as='imgitem'>
-                                    <t t-esc='imgitem.name'/>
                                     <div t-field='imgitem.datas' t-field-options='{"widget": "image"}'/>
                                 </t>
                                 <div class='days'>
                                     <t t-foreach='item.days' t-as='day'>
-                                        <h3 t-field='day.name'/>                                            
-                                            <t t-foreach='day.images' t-as='dayimgitem'>
-                                                <t t-field='dayimgitem.datas' t-field-options='{"widget":"image"}'/>
-                                                <h1>abc</h1>
-                                            </t>
-                                            
-                                            <t t-foreach='1,3,3' t-as='i'>
-                                                <t t-esc='i'/>
-                                                <t t-foreach='2,4,5' t-as='y'>
-                                                    <t t-esc='y'/>
-                                                </t>
-                                            </t>
-
                                         <div t-field='day.content' />
+										<t t-call='yachtrip.dayitem_for_row'>
+											<t t-set='dayitem' t-value='day'/>
+										</t>
                                     </t>
                                 </div>                                
                             </div>
@@ -146,16 +135,22 @@
             </t>
         </template>
 
+		<template id='dayitem_for_row'>
+			<a t-attf-href='/package/day/{{ slug(day) }}'>
+				<h3 t-field='dayitem.name'/>
+			</a>
+			<div t-field='dayitem.content'/>
+		</template>
+
         <template id='dayitem'>
             <div class='days'>
                 <h3 t-field='day.name'/>
-                <div t-esc='day.images'/>
-                <!--
-                <t t-foreach='day.images' t-as='imgitem'>
-                    <t t-field='imgitem.datas' t-field-options='{"widget":"image"}'/>
-                </t>
-                -->
-                <div t-field='day.content' />
+                <div t-field='day.content'/>
+				<div>
+					<t t-foreach='day.images' t-as='img'>
+						<div t-field='img.datas' t-field-options='{"widget":"image"}'/>
+					</t>
+				</div>
             </div>
         </template>
 
